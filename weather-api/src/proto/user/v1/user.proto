@@ -14,7 +14,6 @@ service UserService {
   rpc Add (UserServiceAddRequest) returns (UserServiceAddResponse);
   rpc Update (UserServiceUpdateRequest) returns (UserServiceUpdateResponse);
   rpc Delete (UserServiceDeleteRequest) returns (UserServiceDeleteResponse);
-  rpc Login (UserServiceLoginRequest) returns (UserServiceLoginResponse);
 }
 
 message UserServiceGetRequest {
@@ -52,13 +51,4 @@ message UserServiceDeleteRequest {
 
 message UserServiceDeleteResponse {
   User user = 1;
-}
-
-message UserServiceLoginRequest {
-  string email = 1;
-  string password = 2;
-}
-
-message UserServiceLoginResponse {
-  string token = 1;
 }

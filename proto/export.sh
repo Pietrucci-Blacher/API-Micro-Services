@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projects=(user-api weather-api)
+projects=(user-api weather-api auth-api)
 
 for project in "${projects[@]}"; do
     [ ! -d "../${project}" ] && continue

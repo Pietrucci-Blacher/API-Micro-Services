@@ -49,15 +49,6 @@ export interface UserServiceDeleteResponse {
   user: User | undefined;
 }
 
-export interface UserServiceLoginRequest {
-  email: string;
-  password: string;
-}
-
-export interface UserServiceLoginResponse {
-  token: string;
-}
-
 export const HERO_V1ALPHA_PACKAGE_NAME = "hero.v1alpha";
 
 export interface UserServiceClient {
@@ -68,8 +59,6 @@ export interface UserServiceClient {
   update(request: UserServiceUpdateRequest, metadata?: Metadata): Observable<UserServiceUpdateResponse>;
 
   delete(request: UserServiceDeleteRequest, metadata?: Metadata): Observable<UserServiceDeleteResponse>;
-
-  login(request: UserServiceLoginRequest, metadata?: Metadata): Observable<UserServiceLoginResponse>;
 }
 
 export interface UserServiceController {
@@ -92,16 +81,11 @@ export interface UserServiceController {
     request: UserServiceDeleteRequest,
     metadata?: Metadata,
   ): Promise<UserServiceDeleteResponse> | Observable<UserServiceDeleteResponse> | UserServiceDeleteResponse;
-
-  login(
-    request: UserServiceLoginRequest,
-    metadata?: Metadata,
-  ): Promise<UserServiceLoginResponse> | Observable<UserServiceLoginResponse> | UserServiceLoginResponse;
 }
 
 export function UserServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["get", "add", "update", "delete", "login"];
+    const grpcMethods: string[] = ["get", "add", "update", "delete"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("UserService", method)(constructor.prototype[method], method, descriptor);
