@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package hero.v1alpha;
+
+message Weather {
+  int32 temperature = 1;
+  int32 humidity = 2;
+  int32 pressure = 3;
+}
+
+service WeatherService {
+  rpc Get (WeatherServiceGetRequest) returns (WeatherServiceGetResponse);
+}
+
+message WeatherServiceGetRequest {
+  string location = 1;
+}
+
+message WeatherServiceGetResponse {
+  Weather weather = 1;
+}
