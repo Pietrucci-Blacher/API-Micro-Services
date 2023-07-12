@@ -10,6 +10,9 @@ message Weather {
 
 service WeatherService {
   rpc Get (WeatherServiceGetRequest) returns (WeatherServiceGetResponse);
+  rpc Add (Weather) returns (WeatherServiceAddResponse);
+  rpc Update (Weather) returns (WeatherServiceUpdateResponse);
+  rpc Delete (Weather) returns (WeatherServiceDeleteResponse);
 }
 
 message WeatherServiceGetRequest {
@@ -17,5 +20,33 @@ message WeatherServiceGetRequest {
 }
 
 message WeatherServiceGetResponse {
+ repeated Weather weather = 1;
+}
+
+message WeatherServiceAddRequest {
+  string temperature = 1;
+  string humidity = 2;
+  string pressure = 3;
+}
+
+message WeatherServiceAddResponse {
+  Weather weather = 1;
+}
+
+message WeatherServiceUpdateRequest {
+  string temperature = 1;
+  string humidity = 2;
+  string pressure = 3;
+}
+
+message WeatherServiceUpdateResponse {
+  Weather weather = 1;
+}
+
+message WeatherServiceDeleteRequest {
+  string location = 1;
+}
+
+message WeatherServiceDeleteResponse {
   Weather weather = 1;
 }
