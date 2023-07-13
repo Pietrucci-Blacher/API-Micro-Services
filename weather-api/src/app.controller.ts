@@ -22,14 +22,11 @@ export class AppController implements WeatherServiceController {
     async get(
         request: WeatherServiceGetRequest,
         metadata?: Metadata,
-    ): Promise<WeatherServiceGetResponse> {
+    ): Promise<{ weathers: Weather[] }> {
         let weather: Weather;
-        const weathers: Weather[] = [];
-        if (request.id) {
-            weather = await this.appService.findById(request.id);
-            return { weathers: [weather] };
-        } else if (request.pressure) {
-            weather = await this.appService.findByName(request.pressure);
+        let weathers: Weather[] = [];
+        if (request.location) {
+            weather = await this.appService.findbyLocation(request.location);
             return { weathers: [weather] };
         } else {
             weathers = await this.appService.findAll();

@@ -16,4 +16,10 @@ export class AppService {
             where: { id },
         });
     }
+
+    async findbyLocation(location: string) {
+        return this.prisma.weather.findUnique({
+            where: { location },
+        });
+    }
 }

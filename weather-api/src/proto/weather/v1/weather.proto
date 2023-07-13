@@ -3,9 +3,10 @@ syntax = "proto3";
 package weather.v1;
 
 message Weather {
-  int32 temperature = 1;
-  int32 humidity = 2;
-  int32 pressure = 3;
+  string location = 1;
+  int32 temperature = 2;
+  int32 humidity = 3;
+  int32 pressure = 4;
 }
 
 service WeatherService {
@@ -24,9 +25,10 @@ message WeatherServiceGetResponse {
 }
 
 message WeatherServiceAddRequest {
-  int32 temperature = 1;
-  int32 humidity = 2;
-  int32 pressure = 3;
+  string location = 1;
+  int32 temperature = 2;
+  int32 humidity = 3;
+  int32 pressure = 4;
 }
 
 message WeatherServiceAddResponse {
@@ -34,9 +36,10 @@ message WeatherServiceAddResponse {
 }
 
 message WeatherServiceUpdateRequest {
-  int32 temperature = 1;
-  int32 humidity = 2;
-  int32 pressure = 3;
+  string location = 1;
+  int32 temperature = 2;
+  int32 humidity = 3;
+  int32 pressure = 4;
 }
 
 message WeatherServiceUpdateResponse {

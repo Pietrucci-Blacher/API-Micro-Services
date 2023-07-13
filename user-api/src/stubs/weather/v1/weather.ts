@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 export const protobufPackage = "weather.v1";
 
 export interface Weather {
+  location: string;
   temperature: number;
   humidity: number;
   pressure: number;
@@ -20,6 +21,7 @@ export interface WeatherServiceGetResponse {
 }
 
 export interface WeatherServiceAddRequest {
+  location: string;
   temperature: number;
   humidity: number;
   pressure: number;
@@ -30,6 +32,7 @@ export interface WeatherServiceAddResponse {
 }
 
 export interface WeatherServiceUpdateRequest {
+  location: string;
   temperature: number;
   humidity: number;
   pressure: number;
