@@ -20,7 +20,7 @@ message WeatherServiceGetRequest {
 }
 
 message WeatherServiceGetResponse {
- repeated Weather weather = 1;
+  repeated Weather weather = 1;
 }
 
 message WeatherServiceAddRequest {
