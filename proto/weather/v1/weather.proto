@@ -24,9 +24,9 @@ message WeatherServiceGetResponse {
 }
 
 message WeatherServiceAddRequest {
-  string temperature = 1;
-  string humidity = 2;
-  string pressure = 3;
+  int32 temperature = 1;
+  int32 humidity = 2;
+  int32 pressure = 3;
 }
 
 message WeatherServiceAddResponse {
@@ -34,9 +34,9 @@ message WeatherServiceAddResponse {
 }
 
 message WeatherServiceUpdateRequest {
-  string temperature = 1;
-  string humidity = 2;
-  string pressure = 3;
+  int32 temperature = 1;
+  int32 humidity = 2;
+  int32 pressure = 3;
 }
 
 message WeatherServiceUpdateResponse {

@@ -20,9 +20,9 @@ export interface WeatherServiceGetResponse {
 }
 
 export interface WeatherServiceAddRequest {
-  temperature: string;
-  humidity: string;
-  pressure: string;
+  temperature: number;
+  humidity: number;
+  pressure: number;
 }
 
 export interface WeatherServiceAddResponse {
@@ -30,9 +30,9 @@ export interface WeatherServiceAddResponse {
 }
 
 export interface WeatherServiceUpdateRequest {
-  temperature: string;
-  humidity: string;
-  pressure: string;
+  temperature: number;
+  humidity: number;
+  pressure: number;
 }
 
 export interface WeatherServiceUpdateResponse {
