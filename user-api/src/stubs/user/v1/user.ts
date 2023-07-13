@@ -3,7 +3,7 @@ import { Metadata } from "@grpc/grpc-js";
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 
-export const protobufPackage = "hero.v1alpha";
+export const protobufPackage = "user.v1";
 
 export interface User {
   id: string;
@@ -14,10 +14,11 @@ export interface User {
 
 export interface UserServiceGetRequest {
   id: string;
+  name: string;
 }
 
 export interface UserServiceGetResponse {
-  user: User[];
+  users: User[];
 }
 
 export interface UserServiceAddRequest {
@@ -49,7 +50,7 @@ export interface UserServiceDeleteResponse {
   user: User | undefined;
 }
 
-export const HERO_V1ALPHA_PACKAGE_NAME = "hero.v1alpha";
+export const USER_V1_PACKAGE_NAME = "user.v1";
 
 export interface UserServiceClient {
   get(request: UserServiceGetRequest, metadata?: Metadata): Observable<UserServiceGetResponse>;

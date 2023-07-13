@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package hero.v1alpha;
+package weather.v1;
 
 message Weather {
   int32 temperature = 1;
