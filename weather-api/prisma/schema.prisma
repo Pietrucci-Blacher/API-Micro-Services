@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Weather {
-  id        Int    @id @default(autoincrement())
+  id        String    @id @default(uuid())
   location  String
   temperature Int
   humidity Int

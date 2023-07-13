@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 export const protobufPackage = "weather.v1";
 
 export interface Weather {
+  id: string;
   location: string;
   temperature: number;
   humidity: number;
@@ -13,11 +14,12 @@ export interface Weather {
 }
 
 export interface WeatherServiceGetRequest {
+  id: string;
   location: string;
 }
 
 export interface WeatherServiceGetResponse {
-  weather: Weather[];
+  weathers: Weather[];
 }
 
 export interface WeatherServiceAddRequest {
@@ -43,6 +45,7 @@ export interface WeatherServiceUpdateResponse {
 }
 
 export interface WeatherServiceDeleteRequest {
+  id: string;
   location: string;
 }
 
@@ -55,11 +58,11 @@ export const WEATHER_V1_PACKAGE_NAME = "weather.v1";
 export interface WeatherServiceClient {
   get(request: WeatherServiceGetRequest, metadata?: Metadata): Observable<WeatherServiceGetResponse>;
 
-  add(request: Weather, metadata?: Metadata): Observable<WeatherServiceAddResponse>;
+  add(request: WeatherServiceAddRequest, metadata?: Metadata): Observable<WeatherServiceAddResponse>;
 
-  update(request: Weather, metadata?: Metadata): Observable<WeatherServiceUpdateResponse>;
+  update(request: WeatherServiceUpdateRequest, metadata?: Metadata): Observable<WeatherServiceUpdateResponse>;
 
-  delete(request: Weather, metadata?: Metadata): Observable<WeatherServiceDeleteResponse>;
+  delete(request: WeatherServiceDeleteRequest, metadata?: Metadata): Observable<WeatherServiceDeleteResponse>;
 }
 
 export interface WeatherServiceController {
@@ -69,17 +72,17 @@ export interface WeatherServiceController {
   ): Promise<WeatherServiceGetResponse> | Observable<WeatherServiceGetResponse> | WeatherServiceGetResponse;
 
   add(
-    request: Weather,
+    request: WeatherServiceAddRequest,
     metadata?: Metadata,
   ): Promise<WeatherServiceAddResponse> | Observable<WeatherServiceAddResponse> | WeatherServiceAddResponse;
 
   update(
-    request: Weather,
+    request: WeatherServiceUpdateRequest,
     metadata?: Metadata,
   ): Promise<WeatherServiceUpdateResponse> | Observable<WeatherServiceUpdateResponse> | WeatherServiceUpdateResponse;
 
   delete(
-    request: Weather,
+    request: WeatherServiceDeleteRequest,
     metadata?: Metadata,
   ): Promise<WeatherServiceDeleteResponse> | Observable<WeatherServiceDeleteResponse> | WeatherServiceDeleteResponse;
 }

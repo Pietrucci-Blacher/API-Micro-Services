@@ -30,18 +30,36 @@ export class AppController implements WeatherServiceController {
             return { weathers: [weather] };
         } else {
             weathers = await this.appService.findAll();
-            return { weather };
+            return { weathers };
         }
     }
+
     async update(
         request: WeatherServiceUpdateRequest,
         metadata?: Metadata,
-    ): Promise<WeatherServiceUpdateResponse> {}
+    ): Promise<WeatherServiceUpdateResponse> {
+        const weather = await this.appService.findbyLocation(request.location);
+        return { weather };
+    }
+
     async delete(
         request: WeatherServiceDeleteRequest,
         metadata?: Metadata,
-    ): Promise<WeatherServiceDeleteResponse> {}
+    ): Promise<WeatherServiceDeleteResponse> {
+        const weather = await this.appService.delete(request.id);
+        return { weather };
+    }
+
     async add(
         request: WeatherServiceAddRequest,
-    ): Promise<WeatherServiceAddResponse> {}
+        metadata?: Metadata,
+    ): Promise<WeatherServiceAddResponse> {
+        const weather = await this.appService.create({
+            location: request.location,
+            temperature: request.temperature,
+            humidity: request.humidity,
+            pressure: request.pressure,
+        });
+        return { weather };
+    }
 }

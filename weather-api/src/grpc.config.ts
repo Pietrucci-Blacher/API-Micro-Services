@@ -2,6 +2,7 @@ import { GrpcOptions, Transport } from '@nestjs/microservices';
 import { WEATHER_V1_PACKAGE_NAME } from './stubs/weather/v1/weather';
 import { join } from 'path';
 import { addReflectionToGrpcConfig } from 'nestjs-grpc-reflection';
+
 export const grpcConfig = addReflectionToGrpcConfig({
     transport: Transport.GRPC,
     options: {

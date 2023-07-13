@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { GrpcReflectionModule } from 'nestjs-grpc-reflection';
 import { grpcConfig } from './grpc.config';
 import { PrismaService } from './prisma.service';
+
 @Module({
     imports: [GrpcReflectionModule.register(grpcConfig)],
     controllers: [AppController],

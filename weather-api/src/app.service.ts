@@ -11,7 +11,7 @@ export class AppService {
     findAll(): Promise<Weather[]> {
         return this.prisma.weather.findMany();
     }
-    delete(id: number): Promise<Weather> {
+    delete(id: string): Promise<Weather> {
         return this.prisma.weather.delete({
             where: { id },
         });
