@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package hero.v1alpha;
+package user.v1;
 
 message User {
   string id = 1;
@@ -18,10 +18,11 @@ service UserService {
 
 message UserServiceGetRequest {
   string id = 1;
+  string name = 2;
 }
 
 message UserServiceGetResponse {
-  repeated User user = 1;
+  repeated User users = 1;
 }
 
 message UserServiceAddRequest {
