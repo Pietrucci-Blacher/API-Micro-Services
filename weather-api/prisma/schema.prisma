@@ -3,9 +3,23 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["tracing"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Weather {
+  id        String    @id @default(uuid())
+  location  String
+  temperature Int
+  humidity Int
+  pressure Int
+}
+
+enum Role {
+  ADMIN
+  USER
 }

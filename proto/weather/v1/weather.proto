@@ -3,19 +3,56 @@ syntax = "proto3";
 package weather.v1;
 
 message Weather {
-  int32 temperature = 1;
-  int32 humidity = 2;
-  int32 pressure = 3;
+  string id = 1;
+  string location = 2;
+  int32 temperature = 3;
+  int32 humidity = 4;
+  int32 pressure = 5;
 }
 
 service WeatherService {
   rpc Get (WeatherServiceGetRequest) returns (WeatherServiceGetResponse);
+  rpc Add (WeatherServiceAddRequest) returns (WeatherServiceAddResponse);
+  rpc Update (WeatherServiceUpdateRequest) returns (WeatherServiceUpdateResponse);
+  rpc Delete (WeatherServiceDeleteRequest) returns (WeatherServiceDeleteResponse);
 }
 
 message WeatherServiceGetRequest {
-  string location = 1;
+  string id = 1;
+  string location = 2;
 }
 
 message WeatherServiceGetResponse {
+  repeated Weather weathers = 1;
+}
+
+message WeatherServiceAddRequest {
+  string location = 1;
+  int32 temperature = 2;
+  int32 humidity = 3;
+  int32 pressure = 4;
+}
+
+message WeatherServiceAddResponse {
+  Weather weather = 1;
+}
+
+message WeatherServiceUpdateRequest {
+  string location = 1;
+  int32 temperature = 2;
+  int32 humidity = 3;
+  int32 pressure = 4;
+}
+
+message WeatherServiceUpdateResponse {
+  Weather weather = 1;
+}
+
+message WeatherServiceDeleteRequest {
+  string id = 1;
+  string location = 2;
+}
+
+message WeatherServiceDeleteResponse {
   Weather weather = 1;
 }
