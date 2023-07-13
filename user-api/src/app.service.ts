@@ -17,4 +17,20 @@ export class AppService {
             where: { id },
         });
     }
+    findById(id: string): Promise<User> {
+        return this.prisma.user.findUnique({
+            where: { id },
+        });
+    }
+    findByName(name: string): Promise<User> {
+        return this.prisma.user.findUnique({
+            where: { name },
+        });
+    }
+    update(id: string, data: Prisma.UserUpdateInput): Promise<User> {
+        return this.prisma.user.update({
+            where: { id },
+            data,
+        });
+    }
 }
