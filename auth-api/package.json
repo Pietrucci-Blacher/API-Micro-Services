@@ -26,8 +26,10 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/microservices": "^10.0.5",
     "@nestjs/platform-express": "^9.0.0",
+    "@prisma/client": "^5.0.0",
+    "jsonwebtoken": "^9.0.1",
     "nestjs-grpc-reflection": "^0.0.21",
-    "prisma": "^4.16.2",
+    "prisma": "^5.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
   },
@@ -52,7 +54,7 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.2.0",
-    "typescript": "^4.7.4"
+    "typescript": "^5.1.6"
   },
   "jest": {
     "moduleFileExtensions": [
