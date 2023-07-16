@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 import { Prisma } from '@prisma/client';
 import { Token } from './stubs/auth/v1/auth';
-import jwt from 'jsonwebtoken';
 
 @Injectable()
 export class AppService {

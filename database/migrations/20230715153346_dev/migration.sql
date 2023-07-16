@@ -1,9 +1,7 @@
--- CreateEnum
-CREATE TYPE "Role" AS ENUM ('ADMIN', 'USER');
-
 -- CreateTable
 CREATE TABLE "Weather" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
+    "location" TEXT NOT NULL,
     "temperature" INTEGER NOT NULL,
     "humidity" INTEGER NOT NULL,
     "pressure" INTEGER NOT NULL,

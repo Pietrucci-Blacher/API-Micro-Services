@@ -34,9 +34,8 @@ export class AppController implements AuthServiceController {
         data: AuthServiceRegisterRequest,
         metadata: Metadata,
     ): Promise<AuthServiceRegisterResponse> {
-        return {
-            success: true,
-        };
+        // this.appService.register(data);
+        return { success: true };
     }
 
     async logout(
