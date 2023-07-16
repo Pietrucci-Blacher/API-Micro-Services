@@ -126,4 +126,18 @@ export class AppService {
 
         await this.delete(tokenData.id);
     }
+
+    async isAuthenticated(token: string) {
+        const tokenData = await this.findByToken(token);
+        if (!tokenData) throw new Error('Token not found');
+
+        const user = await this.userService.get({ id: tokenData.userId });
+        if (!user) throw new Error('User not found');
+
+        try {
+            return jwt.verify(token, process.env.JWT_SECRET);
+        } catch (error) {
+            throw new Error('Invalid token');
+        }
+    }
 }

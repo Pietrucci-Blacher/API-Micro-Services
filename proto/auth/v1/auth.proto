@@ -13,6 +13,7 @@ service AuthService {
     rpc Login (AuthServiceLoginRequest) returns (AuthServiceLoginResponse);
     rpc Register (AuthServiceRegisterRequest) returns (AuthServiceRegisterResponse);
     rpc Logout (AuthServiceLogoutRequest) returns (AuthServiceLogoutResponse);
+    rpc IsAuthenticated (IsAuthenticatedRequest) returns (IsAuthenticatedResponse);
 }
 
 message AuthServiceLoginRequest {
@@ -45,4 +46,14 @@ message AuthServiceLogoutRequest {
 message AuthServiceLogoutResponse {
     bool success = 1;
     optional string message = 2;
+}
+
+message IsAuthenticatedRequest {
+    string access_token = 1;
+}
+
+message IsAuthenticatedResponse {
+    optional string user_id = 1;
+    optional bool success = 2;
+    optional string message = 3;
 }

@@ -44,6 +44,16 @@ export interface AuthServiceLogoutResponse {
   message?: string | undefined;
 }
 
+export interface IsAuthenticatedRequest {
+  accessToken: string;
+}
+
+export interface IsAuthenticatedResponse {
+  userId?: string | undefined;
+  success?: boolean | undefined;
+  message?: string | undefined;
+}
+
 export const AUTH_V1_PACKAGE_NAME = "auth.v1";
 
 export interface AuthServiceClient {
@@ -52,6 +62,8 @@ export interface AuthServiceClient {
   register(request: AuthServiceRegisterRequest, metadata?: Metadata): Observable<AuthServiceRegisterResponse>;
 
   logout(request: AuthServiceLogoutRequest, metadata?: Metadata): Observable<AuthServiceLogoutResponse>;
+
+  isAuthenticated(request: IsAuthenticatedRequest, metadata?: Metadata): Observable<IsAuthenticatedResponse>;
 }
 
 export interface AuthServiceController {
@@ -69,11 +81,16 @@ export interface AuthServiceController {
     request: AuthServiceLogoutRequest,
     metadata?: Metadata,
   ): Promise<AuthServiceLogoutResponse> | Observable<AuthServiceLogoutResponse> | AuthServiceLogoutResponse;
+
+  isAuthenticated(
+    request: IsAuthenticatedRequest,
+    metadata?: Metadata,
+  ): Promise<IsAuthenticatedResponse> | Observable<IsAuthenticatedResponse> | IsAuthenticatedResponse;
 }
 
 export function AuthServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["login", "register", "logout"];
+    const grpcMethods: string[] = ["login", "register", "logout", "isAuthenticated"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("AuthService", method)(constructor.prototype[method], method, descriptor);

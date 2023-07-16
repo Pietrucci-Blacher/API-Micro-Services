@@ -67,8 +67,10 @@ message UserServiceDeleteResponse {
 message GetWeatherRequest {
     string id = 1;
     string location = 2;
+    string access_token = 3;
 }
 
 message GetWeatherResponse {
     repeated WeatherInUser weathers = 1;
+    optional string message = 2;
 }

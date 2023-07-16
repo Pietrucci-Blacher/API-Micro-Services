@@ -62,10 +62,12 @@ export interface UserServiceDeleteResponse {
 export interface GetWeatherRequest {
   id: string;
   location: string;
+  accessToken: string;
 }
 
 export interface GetWeatherResponse {
   weathers: WeatherInUser[];
+  message?: string | undefined;
 }
 
 export const USER_V1_PACKAGE_NAME = "user.v1";
