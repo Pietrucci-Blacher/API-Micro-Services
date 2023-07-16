@@ -10,6 +10,8 @@ import {
     AuthServiceLogoutResponse,
     AuthServiceController,
     AuthServiceControllerMethods,
+    IsAuthenticatedRequest,
+    IsAuthenticatedResponse,
 } from './stubs/auth/v1/auth';
 
 @Controller()
@@ -66,5 +68,24 @@ export class AppController implements AuthServiceController {
             };
         }
         return { success: true };
+    }
+
+    async isAuthenticated(
+        data: IsAuthenticatedRequest,
+        metadata: Metadata,
+    ): Promise<IsAuthenticatedResponse> {
+        try {
+            const userId = await this.appService.isAuthenticated(
+                data.accessToken,
+            );
+
+            return { userId: userId.id };
+        } catch (err) {
+            console.error(err.message);
+            return {
+                success: false,
+                message: err.message,
+            };
+        }
     }
 }

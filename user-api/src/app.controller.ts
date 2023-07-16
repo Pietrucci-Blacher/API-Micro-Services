@@ -15,7 +15,13 @@ import {
     UserServiceUpdateRequest,
     UserServiceUpdateResponse,
     UserServiceControllerMethods,
+    GetWeatherRequest,
+    GetWeatherResponse,
 } from './stubs/user/v1/user';
+import {
+    WeatherServiceGetRequest,
+    WeatherServiceGetResponse,
+} from './stubs/weather/v1/weather';
 
 @Controller()
 @UserServiceControllerMethods()
@@ -73,5 +79,15 @@ export class AppController implements UserServiceController {
             password: request.password,
         });
         return { user };
+    }
+
+    async getWeather(request: GetWeatherRequest): Promise<GetWeatherResponse> {
+        try {
+            const weather = await this.appService.getWeather(request);
+            return { weathers: [weather] };
+        } catch (err) {
+            console.error(err);
+            return { weathers: [], message: err.message };
+        }
     }
 }
