@@ -12,6 +12,14 @@ export interface User {
   password: string;
 }
 
+export interface WeatherInUser {
+  id: string;
+  location: string;
+  temperature: number;
+  humidity: number;
+  pressure: number;
+}
+
 export interface UserServiceGetRequest {
   id?: string | undefined;
   name?: string | undefined;
@@ -51,6 +59,15 @@ export interface UserServiceDeleteResponse {
   user: User | undefined;
 }
 
+export interface GetWeatherRequest {
+  id: string;
+  location: string;
+}
+
+export interface GetWeatherResponse {
+  weathers: WeatherInUser[];
+}
+
 export const USER_V1_PACKAGE_NAME = "user.v1";
 
 export interface UserServiceClient {
@@ -61,6 +78,8 @@ export interface UserServiceClient {
   update(request: UserServiceUpdateRequest, metadata?: Metadata): Observable<UserServiceUpdateResponse>;
 
   delete(request: UserServiceDeleteRequest, metadata?: Metadata): Observable<UserServiceDeleteResponse>;
+
+  getWeather(request: GetWeatherRequest, metadata?: Metadata): Observable<GetWeatherResponse>;
 }
 
 export interface UserServiceController {
@@ -83,11 +102,16 @@ export interface UserServiceController {
     request: UserServiceDeleteRequest,
     metadata?: Metadata,
   ): Promise<UserServiceDeleteResponse> | Observable<UserServiceDeleteResponse> | UserServiceDeleteResponse;
+
+  getWeather(
+    request: GetWeatherRequest,
+    metadata?: Metadata,
+  ): Promise<GetWeatherResponse> | Observable<GetWeatherResponse> | GetWeatherResponse;
 }
 
 export function UserServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["get", "add", "update", "delete"];
+    const grpcMethods: string[] = ["get", "add", "update", "delete", "getWeather"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("UserService", method)(constructor.prototype[method], method, descriptor);
