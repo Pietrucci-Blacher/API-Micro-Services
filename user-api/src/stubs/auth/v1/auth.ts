@@ -5,13 +5,21 @@ import { Observable } from "rxjs";
 
 export const protobufPackage = "auth.v1";
 
+export interface Token {
+  id: string;
+  accessToken: string;
+  refreshToken: string;
+  userId: string;
+}
+
 export interface AuthServiceLoginRequest {
   email: string;
   password: string;
 }
 
 export interface AuthServiceLoginResponse {
-  token: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 export interface AuthServiceRegisterRequest {
