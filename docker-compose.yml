@@ -9,9 +9,9 @@ services:
     volumes:
       - ./postgresql:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_USER=${POSTGRES_USER:? mongo user is needed}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:? mongo user is needed}
+      - POSTGRES_DB=${POSTGRES_DB:? mongo user is needed}
   adminer:
     image: adminer
     container_name: adminer

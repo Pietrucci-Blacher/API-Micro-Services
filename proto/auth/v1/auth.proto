@@ -10,35 +10,39 @@ message Token {
 }
 
 service AuthService {
-  rpc Login (AuthServiceLoginRequest) returns (AuthServiceLoginResponse);
-  rpc Register (AuthServiceRegisterRequest) returns (AuthServiceRegisterResponse);
-  rpc Logout (AuthServiceLogoutRequest) returns (AuthServiceLogoutResponse);
+    rpc Login (AuthServiceLoginRequest) returns (AuthServiceLoginResponse);
+    rpc Register (AuthServiceRegisterRequest) returns (AuthServiceRegisterResponse);
+    rpc Logout (AuthServiceLogoutRequest) returns (AuthServiceLogoutResponse);
 }
 
 message AuthServiceLoginRequest {
-  string email = 1;
-  string password = 2;
+    string email = 1;
+    string password = 2;
 }
 
 message AuthServiceLoginResponse {
-  string access_token = 1;
-  string refresh_token = 2;
+    optional string access_token = 1;
+    optional string refresh_token = 2;
+    optional bool success = 3;
+    optional string message = 4;
 }
 
 message AuthServiceRegisterRequest {
-  string name = 1;
-  string email = 2;
-  string password = 3;
+    string name = 1;
+    string email = 2;
+    string password = 3;
 }
 
 message AuthServiceRegisterResponse {
-  bool success = 1;
+    bool success = 1;
+    optional string message = 2;
 }
 
 message AuthServiceLogoutRequest {
-  string token = 1;
+    string token = 1;
 }
 
 message AuthServiceLogoutResponse {
-  bool success = 1;
+    bool success = 1;
+    optional string message = 2;
 }

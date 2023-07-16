@@ -13,8 +13,9 @@ export interface User {
 }
 
 export interface UserServiceGetRequest {
-  id: string;
-  name: string;
+  id?: string | undefined;
+  name?: string | undefined;
+  email?: string | undefined;
 }
 
 export interface UserServiceGetResponse {

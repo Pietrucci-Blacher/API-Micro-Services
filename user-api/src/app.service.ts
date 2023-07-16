@@ -33,6 +33,12 @@ export class AppService {
         });
     }
 
+    findByEmail(email: string): Promise<User> {
+        return this.prisma.user.findUnique({
+            where: { email },
+        });
+    }
+
     update(id: string, data: Prisma.UserUpdateInput): Promise<User> {
         return this.prisma.user.update({
             where: { id },
