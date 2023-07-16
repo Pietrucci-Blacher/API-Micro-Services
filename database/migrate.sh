@@ -2,7 +2,7 @@
 
 projects=(user-api weather-api auth-api)
 
-npx prisma migrate dev --name dev
+npx prisma migrate dev --name dev || exit 1
 
 for project in "${projects[@]}"; do
     [ ! -d "../${project}" ] && continue
