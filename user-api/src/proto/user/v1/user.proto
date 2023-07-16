@@ -3,53 +3,74 @@ syntax = "proto3";
 package user.v1;
 
 message User {
-  string id = 1;
-  string name = 2;
-  string email = 3;
-  string password = 4;
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
+}
+
+message WeatherInUser {
+    string id = 1;
+    string location = 2;
+    int32 temperature = 3;
+    int32 humidity = 4;
+    int32 pressure = 5;
 }
 
 service UserService {
-  rpc Get (UserServiceGetRequest) returns (UserServiceGetResponse);
-  rpc Add (UserServiceAddRequest) returns (UserServiceAddResponse);
-  rpc Update (UserServiceUpdateRequest) returns (UserServiceUpdateResponse);
-  rpc Delete (UserServiceDeleteRequest) returns (UserServiceDeleteResponse);
+    rpc Get (UserServiceGetRequest) returns (UserServiceGetResponse);
+    rpc Add (UserServiceAddRequest) returns (UserServiceAddResponse);
+    rpc Update (UserServiceUpdateRequest) returns (UserServiceUpdateResponse);
+    rpc Delete (UserServiceDeleteRequest) returns (UserServiceDeleteResponse);
+    rpc GetWeather (GetWeatherRequest) returns (GetWeatherResponse);
 }
 
 message UserServiceGetRequest {
-  string id = 1;
-  string name = 2;
+    optional string id = 1;
+    optional string name = 2;
+    optional string email = 3;
 }
 
 message UserServiceGetResponse {
-  repeated User users = 1;
+    repeated User users = 1;
 }
 
 message UserServiceAddRequest {
-  string name = 1;
-  string email = 2;
-  string password = 3;
+    string name = 1;
+    string email = 2;
+    string password = 3;
 }
 
 message UserServiceAddResponse {
-  User user = 1;
+    User user = 1;
 }
 
 message UserServiceUpdateRequest {
-  string id = 1;
-  string name = 2;
-  string email = 3;
-  string password = 4;
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
 }
 
 message UserServiceUpdateResponse {
-  User user = 1;
+    User user = 1;
 }
 
 message UserServiceDeleteRequest {
-  string id = 1;
+    string id = 1;
 }
 
 message UserServiceDeleteResponse {
-  User user = 1;
+    User user = 1;
+}
+
+message GetWeatherRequest {
+    string id = 1;
+    string location = 2;
+    string access_token = 3;
+}
+
+message GetWeatherResponse {
+    repeated WeatherInUser weathers = 1;
+    optional string message = 2;
 }
