@@ -1,6 +1,5 @@
 import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
-import { GrpcMethod } from '@nestjs/microservices';
 import { Metadata } from '@grpc/grpc-js';
 import {
     AuthServiceLoginRequest,
@@ -9,8 +8,6 @@ import {
     AuthServiceRegisterResponse,
     AuthServiceLogoutRequest,
     AuthServiceLogoutResponse,
-    AUTH_SERVICE_NAME,
-    Token,
     AuthServiceController,
     AuthServiceControllerMethods,
 } from './stubs/auth/v1/auth';
@@ -24,17 +21,34 @@ export class AppController implements AuthServiceController {
         data: AuthServiceLoginRequest,
         metadata: Metadata,
     ): Promise<AuthServiceLoginResponse> {
-        return {
-            accessToken: 'access_token',
-            refreshToken: 'refresh_token',
-        };
+        try {
+            const { accessToken, refreshToken } = await this.appService.login(
+                data,
+            );
+            return { accessToken, refreshToken };
+        } catch (err) {
+            console.error(err.message);
+            return {
+                success: false,
+                message: err.message,
+            };
+        }
     }
 
     async register(
         data: AuthServiceRegisterRequest,
         metadata: Metadata,
     ): Promise<AuthServiceRegisterResponse> {
-        // this.appService.register(data);
+        try {
+            await this.appService.register(data);
+        } catch (err) {
+            console.error(err.message);
+            return {
+                success: false,
+                message: err.message,
+            };
+        }
+
         return { success: true };
     }
 
@@ -42,8 +56,15 @@ export class AppController implements AuthServiceController {
         data: AuthServiceLogoutRequest,
         metadata: Metadata,
     ): Promise<AuthServiceLogoutResponse> {
-        return {
-            success: true,
-        };
+        try {
+            await this.appService.logout(data);
+        } catch (err) {
+            console.error(err.message);
+            return {
+                success: false,
+                message: err.message,
+            };
+        }
+        return { success: true };
     }
 }

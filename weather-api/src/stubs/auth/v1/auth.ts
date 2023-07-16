@@ -18,8 +18,10 @@ export interface AuthServiceLoginRequest {
 }
 
 export interface AuthServiceLoginResponse {
-  accessToken: string;
-  refreshToken: string;
+  accessToken?: string | undefined;
+  refreshToken?: string | undefined;
+  success?: boolean | undefined;
+  message?: string | undefined;
 }
 
 export interface AuthServiceRegisterRequest {
@@ -30,6 +32,7 @@ export interface AuthServiceRegisterRequest {
 
 export interface AuthServiceRegisterResponse {
   success: boolean;
+  message?: string | undefined;
 }
 
 export interface AuthServiceLogoutRequest {
@@ -38,6 +41,7 @@ export interface AuthServiceLogoutRequest {
 
 export interface AuthServiceLogoutResponse {
   success: boolean;
+  message?: string | undefined;
 }
 
 export const AUTH_V1_PACKAGE_NAME = "auth.v1";

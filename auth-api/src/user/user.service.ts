@@ -8,6 +8,10 @@ import {
     UserServiceGetResponse,
     UserServiceAddRequest,
     UserServiceAddResponse,
+    UserServiceUpdateRequest,
+    UserServiceUpdateResponse,
+    UserServiceDeleteRequest,
+    UserServiceDeleteResponse,
     User,
 } from '../stubs/user/v1/user';
 import { firstValueFrom } from 'rxjs';
@@ -26,10 +30,11 @@ export class UserService implements OnModuleInit {
 
     async get(
         req: UserServiceGetRequest,
-        md: Record<string, any>,
+        md?: Record<string, any>,
     ): Promise<User> {
         const meta = new Metadata();
-        Object.entries(md).map(([k, v]) => meta.add(k, v));
+        if (md) Object.entries(md).map(([k, v]) => meta.add(k, v));
+
         const res: UserServiceGetResponse = await firstValueFrom(
             this.userService.get(req, meta) as any,
         );
@@ -37,11 +42,45 @@ export class UserService implements OnModuleInit {
         return res.users?.[0];
     }
 
-    async add(req: UserServiceAddRequest): Promise<User> {
-        const res: UserServiceGetResponse = await firstValueFrom(
-            this.userService.add(req) as any,
+    async add(
+        req: UserServiceAddRequest,
+        md?: Record<string, any>,
+    ): Promise<User> {
+        const meta = new Metadata();
+        if (md) Object.entries(md).map(([k, v]) => meta.add(k, v));
+
+        const res: UserServiceAddResponse = await firstValueFrom(
+            this.userService.add(req, meta) as any,
         );
 
-        return res.users?.[0];
+        return res.user?.[0];
+    }
+
+    async update(
+        req: UserServiceUpdateRequest,
+        md?: Record<string, any>,
+    ): Promise<User> {
+        const meta = new Metadata();
+        Object.entries(md).map(([k, v]) => meta.add(k, v));
+
+        const res: UserServiceUpdateResponse = await firstValueFrom(
+            this.userService.update(req) as any,
+        );
+
+        return res.user?.[0];
+    }
+
+    async delete(
+        req: UserServiceDeleteRequest,
+        md?: Record<string, any>,
+    ): Promise<User> {
+        const meta = new Metadata();
+        Object.entries(md).map(([k, v]) => meta.add(k, v));
+
+        const res: UserServiceDeleteResponse = await firstValueFrom(
+            this.userService.delete(req, meta) as any,
+        );
+
+        return res.user?.[0];
     }
 }

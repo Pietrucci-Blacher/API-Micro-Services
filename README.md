@@ -13,6 +13,18 @@ cd API-Micro-Services
 docker compose up -d
 ```
 
+## Create dotenv
+
+Create file `.env`
+
+```
+JWT_SECRET="somethingsecret"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres?schema=public"
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=postgres
+```
+
 ## Install dependences
 
 Only first time
