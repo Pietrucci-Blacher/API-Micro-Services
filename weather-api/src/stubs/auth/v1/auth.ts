@@ -3,7 +3,14 @@ import { Metadata } from "@grpc/grpc-js";
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 
-export const protobufPackage = "hero.v1alpha";
+export const protobufPackage = "auth.v1";
+
+export interface Token {
+  id: string;
+  accessToken: string;
+  refreshToken: string;
+  userId: string;
+}
 
 export interface AuthServiceLoginRequest {
   email: string;
@@ -11,7 +18,8 @@ export interface AuthServiceLoginRequest {
 }
 
 export interface AuthServiceLoginResponse {
-  token: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 export interface AuthServiceRegisterRequest {
@@ -32,7 +40,7 @@ export interface AuthServiceLogoutResponse {
   success: boolean;
 }
 
-export const HERO_V1ALPHA_PACKAGE_NAME = "hero.v1alpha";
+export const AUTH_V1_PACKAGE_NAME = "auth.v1";
 
 export interface AuthServiceClient {
   login(request: AuthServiceLoginRequest, metadata?: Metadata): Observable<AuthServiceLoginResponse>;

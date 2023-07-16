@@ -1,6 +1,13 @@
 syntax = "proto3";
 
-package hero.v1alpha;
+package auth.v1;
+
+message Token {
+    string id = 1;
+    string access_token = 2;
+    string refresh_token = 3;
+    string user_id = 4;
+}
 
 service AuthService {
   rpc Login (AuthServiceLoginRequest) returns (AuthServiceLoginResponse);
@@ -14,7 +21,8 @@ message AuthServiceLoginRequest {
 }
 
 message AuthServiceLoginResponse {
-  string token = 1;
+  string access_token = 1;
+  string refresh_token = 2;
 }
 
 message AuthServiceRegisterRequest {
