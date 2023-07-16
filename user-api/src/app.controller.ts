@@ -34,6 +34,9 @@ export class AppController implements UserServiceController {
         } else if (request.name) {
             user = await this.appService.findByName(request.name);
             return { users: [user] };
+        } else if (request.email) {
+            user = await this.appService.findByEmail(request.email);
+            return { users: [user] };
         } else {
             users = await this.appService.findAll();
             return { users };

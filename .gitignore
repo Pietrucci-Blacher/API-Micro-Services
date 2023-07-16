@@ -2,3 +2,4 @@
 tags
 postgresql
 node_modules
+.env
