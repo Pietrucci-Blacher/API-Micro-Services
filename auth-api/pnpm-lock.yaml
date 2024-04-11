@@ -630,7 +630,7 @@ packages:
       '@types/long': 4.0.2
       lodash.camelcase: 4.3.0
       long: 4.0.0
-      protobufjs: 7.2.4
+      protobufjs: 7.2.6
       yargs: 17.7.2
 
   /@humanwhocodes/config-array@0.11.10:
@@ -4132,7 +4132,7 @@ packages:
       '@nestjs/core': 9.4.3(@nestjs/common@9.4.3)(@nestjs/microservices@10.0.5)(@nestjs/platform-express@9.4.3)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/microservices': 10.0.5(@grpc/grpc-js@1.8.18)(@nestjs/common@9.4.3)(@nestjs/core@9.4.3)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       google-protobuf: 3.21.2
-      protobufjs: 7.2.4
+      protobufjs: 7.2.6
       reflect-metadata: 0.1.13
       rxjs: 7.8.1
       ts-case-convert: 2.0.2
@@ -4439,8 +4439,8 @@ packages:
       sisteransi: 1.0.5
     dev: true
 
-  /protobufjs@7.2.4:
-    resolution: {integrity: sha512-AT+RJgD2sH8phPmCf7OUZR8xGdcJRga4+1cOaXJ64hvcSkVhNcRHOwIxUatPH15+nj59WAGTDv3LSGZPEQbJaQ==}
+  /protobufjs@7.2.6:
+    resolution: {integrity: sha512-dgJaEDDL6x8ASUZ1YqWciTRrdOuYNzoOf27oHNfdyvKqHr5i0FV7FSLU+aIeFjyFgVxrpTOtQUi0BLLBymZaBw==}
     engines: {node: '>=12.0.0'}
     requiresBuild: true
     dependencies:
